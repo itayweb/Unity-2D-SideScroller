@@ -266,7 +266,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 235023060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6900005, y: -0.724, z: -10}
+  m_LocalPosition: {x: -2.6900003, y: -0.724, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1208448854}
@@ -297,7 +297,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329104489}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.33, y: -0.86, z: 0}
+  m_LocalPosition: {x: 0.64, y: -0.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 113110428}
@@ -1087,7 +1087,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1554037924}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6900005, y: -0.724, z: -10}
+  m_LocalPosition: {x: -2.6900003, y: -0.724, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1359,7 +1359,7 @@ GameObject:
   - component: {fileID: 2015550378}
   m_Layer: 10
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1508,7 +1508,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  currentHealth: 0
 --- !u!1 &2027958368 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5917102971058880769, guid: 86c5c189e97fff54abb89afe6215d0e6,
@@ -1530,6 +1529,22 @@ MonoBehaviour:
   attackDamage: 10
   attackPoint: {fileID: 329104490}
   attackRange: 1.12
+  attackRate: 2
   enemiesLayer:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &2027958375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027958368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db239fe20169fa74fb96260385f90d50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyAttackDamage: 5
+  playerMaxHealth: 60
+  playerCurrentHealth: 0
