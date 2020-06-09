@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public LayerMask playerLayer;
+    public HealthBar healthBar;
+
+    private Animator animator;
 
     public float hitRange = 0.5f;
-
-    private Collider2D col;
 
     public int enemyAttackDamage = 5;
     public int playerMaxHealth = 60;
@@ -17,26 +17,27 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        col = GetComponent<Collider2D>();
+        animator = GetComponent<Animator>();
         playerCurrentHealth = playerMaxHealth;
-    }
-    
-    void PlayerTakeDamage(){
-        
-        Collider2D[] enemyHitPlayer = Physics2D.OverlapCircleAll(gameObject.transform.position.x,hitRange);
+        healthBar.SetMaxHealth(playerMaxHealth);
     }
 
-    /*void OnCollisionEnter2D(Collision2D col){
-        //if (col.gameObject.tag == "Enemy"){
-            playerCurrentHealth -= enemyAttackDamage;
+    void OnCollisionEnter2D(Collision2D collision){
+        if(collision.gameObject.CompareTag("Enemy")){
+            TakeDamage();
+        }
+    }
 
-            if(playerCurrentHealth <= 0){
-                playerDie();
-            }
-        //}
-    }*/
+    void TakeDamage(){
+        playerCurrentHealth -= enemyAttackDamage;
+        animator.SetTrigger("Hurt");
+        healthBar.SetHealth(playerCurrentHealth);
+        if (playerCurrentHealth <= 0){
+            playerDie();
+        }
+    }
 
     void playerDie(){
-        Debug.Log("Player died");
+        animator.SetBool("IsDead",true);
     }
 }
