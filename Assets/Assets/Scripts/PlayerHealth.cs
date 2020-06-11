@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public GameObject gameOverScreen;
+    
     public HealthBar healthBar;
 
     private Animator animator;
@@ -13,6 +16,8 @@ public class PlayerHealth : MonoBehaviour
     public int enemyAttackDamage = 5;
     public int playerMaxHealth = 60;
     public int playerCurrentHealth;
+    
+    private bool gameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void TakeDamage(){
+    public void TakeDamage(){
         playerCurrentHealth -= enemyAttackDamage;
         animator.SetTrigger("Hurt");
         healthBar.SetHealth(playerCurrentHealth);
@@ -37,7 +42,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void playerDie(){
+    public void playerDie(){
         animator.SetBool("IsDead",true);
     }
 }

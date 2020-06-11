@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject canvasBoard; // Getting the health bar ui
+    public int coins = 0;
+
+    public Canvas canvasBoard; // Getting the health bar ui
+    public Text numPoints;
 
     private Animator anim; // Getting the animator component
 
@@ -65,6 +69,12 @@ public class PlayerController : MonoBehaviour
         // Checking if the player is touching layers named as "Ground":
         if (player.collider.tag == "Ground"){
             anim.SetBool("IsJumping", false); // Disable the jump animation
+        }
+        // Checking if the player is touching the coin and adding it to the collector:
+        if (player.gameObject.tag == "Coin"){
+            Destroy(player.gameObject); // Remove the the coin from the screen
+            coins += 1; // Adding 1 coin to the collector
+            numPoints.text = coins.ToString();
         }
     }
 
