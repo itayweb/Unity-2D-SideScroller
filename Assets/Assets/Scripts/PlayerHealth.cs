@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public int deathDelay = 0;
+    public int timeDelay = 10;
+
     public GameObject gameOverScreen;
     
     public HealthBar healthBar;
@@ -39,6 +42,19 @@ public class PlayerHealth : MonoBehaviour
         healthBar.SetHealth(playerCurrentHealth);
         if (playerCurrentHealth <= 0){
             playerDie();
+            StartCoroutine (Timer());
+            IEnumerator Timer(){
+                yield return new WaitForSeconds(1);
+                Time.timeScale = 0f;
+                gameOverScreen.SetActive(true);
+            }
+            /*for (int i = 0; i <= timeDelay; i ++){
+                deathDelay++;
+            }
+            if(deathDelay >= ){
+                Time.timeScale = 0f;
+                gameOverScreen.SetActive(true);
+            }*/
         }
     }
 

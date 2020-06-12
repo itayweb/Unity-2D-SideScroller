@@ -59,7 +59,6 @@ public class PlayerController : MonoBehaviour
         moveDirection = Input.GetAxis("Horizontal");
         // Checking if the player hit the jump button and if the condition (he is on the ground) are happening:
         if (Input.GetButtonDown("Jump") && isGrounded){
-            Debug.Log("jump");
             isJumping = true; // Changing the player's condition if he is jumping
             anim.SetBool("IsJumping", true); // Enable the jump animation
         }
