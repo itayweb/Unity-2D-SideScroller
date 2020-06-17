@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public float moveSpeed = 4f;
+    public bool movingLeft = true;
+    public Transform platformDetection;
+    public float distance;
+
+    public LayerMask playerLayer;
+
     private Animator anim;
+    private Rigidbody2D rb;
 
     public int maxHealth = 50;
     private int currentHealth;
@@ -12,8 +20,25 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         currentHealth = maxHealth;
+    }
+
+    void EnemyMovement(){
+        rb.velocity = new Vector2(moveSpeed * Time.deltaTime, rb.velocity.y);
+
+        RaycastHit2D hitInfo = Physics2D.Raycast(platformDetection.position, Vector2.right, distance);
+        if (hitInfo.collider == gameObject.CompareTag("EnemyWalkPoint")){
+            if (movingLeft == true){
+                transform.Rotate(0,-180,0);
+                movingLeft = false;
+            }
+            else{
+                transform.Rotate(0,0,0);
+                movingLeft = true;
+            }
+        }
     }
     
     public void TakeDamage(int playerAttackDamage){

@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundObjects; // Setting what layers is known as "Ground"
 
     public float movementSpeed; // Setting the player's movement speed
-    private float moveDirection; // Getting the player's movement direction
+    public float moveDirection; // Getting the player's movement direction
     public float jumpForce; // Setting the player's jump speed
     public float checkRadius; // Setting the radius between the ground and the player
 
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundObjects);
     }
 
-    private void Inputs(){
+    public void Inputs(){
         // Getting the player's input axis:
         moveDirection = Input.GetAxis("Horizontal");
         // Checking if the player hit the jump button and if the condition (he is on the ground) are happening:
