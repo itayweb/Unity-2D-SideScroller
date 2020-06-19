@@ -25,21 +25,11 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    void EnemyMovement(){
-        rb.velocity = new Vector2(moveSpeed * Time.deltaTime, rb.velocity.y);
-
-        RaycastHit2D hitInfo = Physics2D.Raycast(platformDetection.position, Vector2.right, distance);
-        if (hitInfo.collider == gameObject.CompareTag("EnemyWalkPoint")){
-            if (movingLeft == true){
-                transform.Rotate(0,-180,0);
-                movingLeft = false;
-            }
-            else{
-                transform.Rotate(0,0,0);
-                movingLeft = true;
-            }
-        }
+    private void Update() {
+        
     }
+
+
     
     public void TakeDamage(int playerAttackDamage){
         // Substracting the current health with the attack damage:

@@ -7,8 +7,9 @@ TagManager:
   - Ground
   - Enemy
   - Coin
-  - EnemyPointLeft
-  - EnemyPointRight
+  - EnemyWalkPoint
+  - EnemyWalkPointLeft
+  - EnemyWalkPointRight
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - Enemy
   - Coin
   - Player
-  - EnemyPointLeft
-  - EnemyPointRight
+  - EnemyPoint
+  - 
   - 
   - 
   - 
