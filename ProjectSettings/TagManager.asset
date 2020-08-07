@@ -7,9 +7,14 @@ TagManager:
   - Ground
   - Enemy
   - Coin
-  - EnemyWalkPoint
   - EnemyWalkPointLeft
   - EnemyWalkPointRight
+  - Obsicle
+  - HealthPoints
+  - Chest
+  - EndPoint
+  - Camera
+  - Bound
   layers:
   - Default
   - TransparentFX
@@ -25,12 +30,12 @@ TagManager:
   - Coin
   - Player
   - EnemyPoint
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Obsicle
+  - HealthPoints
+  - Chest
+  - EndPoint
+  - Camera
+  - Bound
   - 
   - 
   - 

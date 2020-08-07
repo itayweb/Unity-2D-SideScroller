@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public int healthPoints = 10;
+
     public int deathDelay = 0;
     public int timeDelay = 10;
 
@@ -27,13 +29,33 @@ public class PlayerHealth : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         playerCurrentHealth = playerMaxHealth;
-        healthBar.SetMaxHealth(playerMaxHealth);
+        healthBar.SetMaxHealth(playerMaxHealth);   
     }
 
     void OnCollisionEnter2D(Collision2D collision){
-        if(collision.gameObject.CompareTag("Enemy")){
+        /*if(collision.gameObject.CompareTag("Enemy")){
+            TakeDamage();
+        }*/
+        if(collision.gameObject.CompareTag("Obsicle")){
+            playerDie();
+        }
+        /*if(collision.gameObject.CompareTag("HealthPoints")){
+            HealthPoints();
+        }*/
+    }
+
+    void OnTriggerEnter2D(Collider2D collider){
+        if (collider.gameObject.tag.Equals("Enemy")){
             TakeDamage();
         }
+        if (collider.gameObject.tag.Equals("HealthPoints")){
+            HealthPoints();
+        }
+    }
+
+    void HealthPoints(){
+        playerCurrentHealth += healthPoints;
+        Destroy(GameObject.FindWithTag("HealthPoints"));
     }
 
     public void TakeDamage(){
@@ -42,23 +64,16 @@ public class PlayerHealth : MonoBehaviour
         healthBar.SetHealth(playerCurrentHealth);
         if (playerCurrentHealth <= 0){
             playerDie();
-            StartCoroutine (Timer());
-            IEnumerator Timer(){
-                yield return new WaitForSeconds(1);
-                Time.timeScale = 0f;
-                gameOverScreen.SetActive(true);
-            }
-            /*for (int i = 0; i <= timeDelay; i ++){
-                deathDelay++;
-            }
-            if(deathDelay >= ){
-                Time.timeScale = 0f;
-                gameOverScreen.SetActive(true);
-            }*/
         }
     }
 
     public void playerDie(){
         animator.SetBool("IsDead",true);
+        StartCoroutine (DeathTimer());
+        IEnumerator DeathTimer(){
+            yield return new WaitForSeconds(1);
+            Time.timeScale = 0f;
+            gameOverScreen.SetActive(true);
+        }
     }
 }

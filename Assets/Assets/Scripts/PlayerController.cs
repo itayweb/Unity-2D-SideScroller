@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -70,10 +72,21 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("IsJumping", false); // Disable the jump animation
         }
         // Checking if the player is touching the coin and adding it to the collector:
-        if (player.gameObject.tag == "Coin"){
+        /*if (player.gameObject.tag == "Coin"){
             Destroy(player.gameObject); // Remove the the coin from the screen
             coins += 1; // Adding 1 coin to the collector
             numPoints.text = coins.ToString();
+        }*/
+    }
+
+    void OnTriggerEnter2D(Collider2D collider){
+        if (collider.gameObject.tag.Equals("Coin")){
+            Destroy(collider.gameObject); // Remove the the coin from the screen
+            coins += 1; // Adding 1 coin to the collector
+            numPoints.text = coins.ToString();
+        }
+        if (collider.gameObject.tag.Equals("EndPoint")){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
         }
     }
 
@@ -82,7 +95,8 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(moveDirection * movementSpeed, rb.velocity.y);
         // Checking if the condition (if he is jumping) in happening:
         if(isJumping){
-            rb.velocity = new Vector2(0f,jumpForce); // Changing the player's direction upwards
+            //rb.velocity = new Vector2(0f,jumpForce); // Changing the player's direction upwards
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
         isJumping = false; // Changing the jumping condition to eliminate the option to jump infinite
     }
