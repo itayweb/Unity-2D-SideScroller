@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4891233527743551826}
   - component: {fileID: 4891233527743551837}
   - component: {fileID: 4891233527743551836}
-  m_Layer: 5
+  m_Layer: 18
   m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,13 +130,13 @@ GameObject:
   - component: {fileID: 4891233527750995679}
   - component: {fileID: 4891233527750995677}
   - component: {fileID: 4891233527750995676}
-  m_Layer: 5
+  m_Layer: 18
   m_Name: Game Over Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4891233527750995679
 RectTransform:
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 4891233527953498765}
   - component: {fileID: 4891233527953498755}
   - component: {fileID: 4891233527953498754}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 4891233527985784366}
   - component: {fileID: 4891233527985784364}
   - component: {fileID: 4891233527985784367}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 4891233528015180388}
   - component: {fileID: 4891233528015180442}
   - component: {fileID: 4891233528015180389}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +441,7 @@ GameObject:
   - component: {fileID: 4891233528027938521}
   - component: {fileID: 4891233528027938527}
   - component: {fileID: 4891233528027938526}
-  m_Layer: 5
+  m_Layer: 18
   m_Name: Game Over
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 4891233528042914605}
   - component: {fileID: 4891233528042914604}
   - component: {fileID: 4891233528042914607}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,7 +630,7 @@ GameObject:
   - component: {fileID: 4891233528226764111}
   - component: {fileID: 4891233528226764109}
   - component: {fileID: 4891233528226764108}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: NumPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -709,7 +709,7 @@ GameObject:
   - component: {fileID: 4891233528251542370}
   - component: {fileID: 4891233528251542381}
   - component: {fileID: 4891233528251542380}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Resume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -838,7 +838,7 @@ GameObject:
   - component: {fileID: 4891233528283407611}
   - component: {fileID: 4891233528283407609}
   - component: {fileID: 4891233528283407608}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -917,7 +917,7 @@ GameObject:
   - component: {fileID: 4891233528305683044}
   - component: {fileID: 4891233528305683047}
   - component: {fileID: 4891233528305683046}
-  m_Layer: 5
+  m_Layer: 18
   m_Name: Retry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1047,7 +1047,7 @@ GameObject:
   - component: {fileID: 4891233528318468401}
   - component: {fileID: 4891233528318468400}
   - component: {fileID: 4891233528318468403}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1177,7 +1177,7 @@ GameObject:
   - component: {fileID: 4891233528433576380}
   - component: {fileID: 4891233528433576383}
   - component: {fileID: 4891233528433576370}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1297,7 +1297,7 @@ GameObject:
   - component: {fileID: 4891233528568573897}
   - component: {fileID: 4891233528568573903}
   - component: {fileID: 4891233528568573902}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Paused
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1377,13 +1377,13 @@ GameObject:
   - component: {fileID: 4891233528582154367}
   - component: {fileID: 4891233528582154366}
   - component: {fileID: 4891233528582154361}
-  m_Layer: 5
+  m_Layer: 18
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4891233528582154360
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1489,7 +1489,7 @@ GameObject:
   - component: {fileID: 4891233528584101840}
   - component: {fileID: 4891233528584101843}
   - component: {fileID: 4891233528584101842}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1618,7 +1618,7 @@ GameObject:
   - component: {fileID: 4891233528672155908}
   - component: {fileID: 4891233528672155962}
   - component: {fileID: 4891233528672155909}
-  m_Layer: 5
+  m_Layer: 18
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1697,7 +1697,7 @@ GameObject:
   - component: {fileID: 4891233529304798414}
   - component: {fileID: 4891233529304798409}
   - component: {fileID: 4891233529304798408}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1795,7 +1795,7 @@ GameObject:
   - component: {fileID: 4891233529566795907}
   - component: {fileID: 4891233529566795905}
   - component: {fileID: 4891233529566795904}
-  m_Layer: 5
+  m_Layer: 18
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1873,7 +1873,7 @@ GameObject:
   - component: {fileID: 4891233529584055913}
   - component: {fileID: 4891233529584055912}
   - component: {fileID: 4891233529584055915}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Pause Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1950,7 +1950,7 @@ GameObject:
   - component: {fileID: 4891233529597952463}
   - component: {fileID: 4891233529597952461}
   - component: {fileID: 4891233529597952460}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: PointBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

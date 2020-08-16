@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider){
         if (collider.gameObject.tag.Equals("Coin")){
+            Debug.Log("Working");
             Destroy(collider.gameObject); // Remove the the coin from the screen
             coins += 1; // Adding 1 coin to the collector
             numPoints.text = coins.ToString();
