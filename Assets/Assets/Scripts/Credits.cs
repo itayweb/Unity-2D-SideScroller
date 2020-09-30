@@ -5,18 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class Credits : MonoBehaviour
 {
+    private Animator anim;
+
     public Transform creditsCheck;
+    public Transform creditsEnding;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (creditsCheck.position.y >= 363)
+
+    }
+
+    public void AlertObservers(string message)
+    {
+        if (message == "AnimationEnded")
         {
             SceneManager.LoadScene(0);
         }
