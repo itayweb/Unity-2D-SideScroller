@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject gameEndMenu;
+
     public int coins = 0;
 
     public Canvas canvasBoard; // Getting the health bar ui
@@ -70,6 +72,11 @@ public class PlayerController : MonoBehaviour
         // Checking if the player is touching layers named as "Ground":
         if (player.collider.tag == "Ground"){
             anim.SetBool("IsJumping", false); // Disable the jump animation
+        }
+        else if (player.collider.tag == "Trophy")
+        {
+            gameEndMenu.SetActive(true);
+            Debug.Log("Working");
         }
         // Checking if the player is touching the coin and adding it to the collector:
         /*if (player.gameObject.tag == "Coin"){

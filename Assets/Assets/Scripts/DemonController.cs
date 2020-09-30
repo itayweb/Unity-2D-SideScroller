@@ -13,6 +13,12 @@ public class DemonController : MonoBehaviour
         Right,
         AttackLeft,
         AttackRight,
+        PlayerDetectionLeft,
+        PlayerDetectionRight,
+        HurtLeft,
+        HurtRight,
+        DyingLeft,
+        DyingRight,
     }
 
     private State state;
@@ -24,13 +30,14 @@ public class DemonController : MonoBehaviour
     public EnemyHealthBar enemyHealthBar;
     public Canvas canvas;
     
-    public GameObject coin;
-    public GameObject healthPoint;
+    public GameObject playerObject;
+    public GameObject trophy;
 
     private Rigidbody2D rb;
     private Animator anim;
 
     public float moveSpeed = 4f;
+    public float timerSeconds;
 
     public bool movingLeft;
 
@@ -83,12 +90,7 @@ public class DemonController : MonoBehaviour
             {
                 state = State.Right;
             }
-            StartCoroutine(Timer());
-            IEnumerator Timer()
-            {
-                yield return new WaitForSeconds(1);
-                Attack();
-            }
+            Attack();
         }
     }
 
@@ -108,7 +110,10 @@ public class DemonController : MonoBehaviour
             state = State.Right;
             anim.SetInteger("state", (int)state);
         }
-
+        if (transform.position.x == target.position.x)
+        {
+            StopChasingPlayer();
+        }
     }
 
     void StopChasingPlayer()
@@ -122,42 +127,29 @@ public class DemonController : MonoBehaviour
         if (state == State.Right)
         {
             anim.SetInteger("state", 4);
-            Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPointRight.position, attackRange, playDetection);
-            foreach (Collider2D player in hitPlayer)
-            {
-                player.GetComponent<PlayerHealth>().TakeDamage();
-            }
+            playerObject.GetComponent<PlayerHealth>().TakeDamage();
         }
         else if (state == State.Left)
         {
             anim.SetInteger("state", 3);
-            Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPointLeft.position, attackRange, playDetection);
-            foreach(Collider2D player in hitPlayer)
-            {
-                player.GetComponent<PlayerHealth>().TakeDamage();
-            }
+            playerObject.GetComponent<PlayerHealth>().TakeDamage();
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (attackPointRight == null)
-        {
-            return;
-        }
-
-        Gizmos.DrawWireSphere(attackPointRight.position, attackRange);
-
-        if (attackPointLeft == null) { return; }
-
-        Gizmos.DrawWireSphere(attackPointLeft.position, attackRange);
     }
 
     public void TakeDamage(int playerAttackDamage)
     {
-        Debug.Log("Working");
         currentHealth -= playerAttackDamage;
         enemyHealthBar.SetEnemyHealth(currentHealth);
+        if (transform.position.x > target.position.x)
+        {
+            state = State.HurtLeft;
+            anim.SetInteger("state", (int)state);
+        }
+        else
+        {
+            state = State.HurtRight;
+            anim.SetInteger("state", (int)state);
+        }
         if (currentHealth <= 0)
         {
             Die();
@@ -167,5 +159,24 @@ public class DemonController : MonoBehaviour
     void Die()
     {
         Debug.Log("Dying");
+        if (transform.position.x > target.position.x)
+        {
+            state = State.DyingLeft;
+            anim.SetInteger("state", (int)state);
+        }
+        else
+        {
+            state = State.DyingRight;
+            anim.SetInteger("state", (int)state);
+        }
+        GetComponent<Rigidbody2D>().simulated = false;
+        GetComponent<Collider2D>().enabled = false;
+        StartCoroutine(Timer());
+        IEnumerator Timer()
+        {
+            yield return new WaitForSeconds(1);
+            trophy.SetActive(true);
+            Destroy(this.gameObject);
+        }
     }
 }

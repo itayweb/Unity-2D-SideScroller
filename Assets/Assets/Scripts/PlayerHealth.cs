@@ -17,10 +17,10 @@ public class PlayerHealth : MonoBehaviour
     private Animator animator;
 
     public float hitRange = 0.5f;
+    public float enemyAttackDamage = 0.1f;
 
-    public int enemyAttackDamage = 5;
     public int playerMaxHealth = 60;
-    public int playerCurrentHealth;
+    public float playerCurrentHealth;
     
     private bool gameOver;
 
@@ -60,9 +60,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(){
         playerCurrentHealth -= enemyAttackDamage;
+        healthBar.SetHealth((int)playerCurrentHealth);
         animator.SetTrigger("Hurt");
-        healthBar.SetHealth(playerCurrentHealth);
-        if (playerCurrentHealth <= 0){
+        if (playerCurrentHealth <= 0)
+        {
             playerDie();
         }
     }
