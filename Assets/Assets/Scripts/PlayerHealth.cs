@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public int healthPoints = 10;
-
     public int deathDelay = 0;
     public int timeDelay = 10;
 
@@ -64,6 +63,7 @@ public class PlayerHealth : MonoBehaviour
         animator.SetTrigger("Hurt");
         if (playerCurrentHealth <= 0)
         {
+            Debug.Log(animator.GetBool("IsDead"));
             playerDie();
         }
     }

@@ -5,11 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameEndMenu : MonoBehaviour
 {
-    private Animator anim;
-
     private void Awake()
     {
-        anim = GetComponent<Animator>();
         StartCoroutine(Timer());
         IEnumerator Timer()
         {

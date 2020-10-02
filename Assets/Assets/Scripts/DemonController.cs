@@ -23,6 +23,9 @@ public class DemonController : MonoBehaviour
 
     private State state;
 
+    private float attackRate = 10f;
+    private float nextAttackRate = 0f;
+
     public int maxHealth = 1500;
     private int currentHealth;
     public int distance = 6;
@@ -52,8 +55,8 @@ public class DemonController : MonoBehaviour
     public float attackRange;
 
     private float distToPlayer;
-    private float nextAttackTime = 0f;
-    public float attackRate = 5f;
+    //private float nextAttackTime = 0f;
+    //public float attackRate = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -124,15 +127,20 @@ public class DemonController : MonoBehaviour
 
     void Attack()
     {
-        if (state == State.Right)
+        if (Time.time >= nextAttackRate)
         {
-            anim.SetInteger("state", 4);
-            playerObject.GetComponent<PlayerHealth>().TakeDamage();
-        }
-        else if (state == State.Left)
-        {
-            anim.SetInteger("state", 3);
-            playerObject.GetComponent<PlayerHealth>().TakeDamage();
+            if (state == State.Right)
+            {
+                anim.SetInteger("state", 4);
+                playerObject.GetComponent<PlayerHealth>().TakeDamage();
+            }
+            else if (state == State.Left)
+            {
+                anim.SetInteger("state", 3);
+                playerObject.GetComponent<PlayerHealth>().TakeDamage();
+            }
+            nextAttackRate = Time.time + 1 / attackRate;
+            Debug.Log(nextAttackRate);
         }
     }
 
