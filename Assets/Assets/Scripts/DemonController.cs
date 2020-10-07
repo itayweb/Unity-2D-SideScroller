@@ -55,6 +55,8 @@ public class DemonController : MonoBehaviour
     public float attackRange;
 
     private float distToPlayer;
+
+    RaycastHit2D hit;
     //private float nextAttackTime = 0f;
     //public float attackRate = 5f;
 
@@ -88,12 +90,26 @@ public class DemonController : MonoBehaviour
             if (transform.position.x > target.position.x)
             {
                 state = State.Left;
+                if (Time.time >= nextAttackRate && Physics2D.Raycast(transform.position, Vector2.left, 1))
+                {
+
+                }
             }
             else
             {
                 state = State.Right;
+                if (Time.time >= nextAttackRate && Physics2D.Raycast(transform.position, Vector2.right, 1))
+                {
+
+                }
             }
-            Attack();
+            //if (Time.time >= nextAttackRate)
+            //{
+            //    Attack();
+            //    nextAttackRate = Time.time + 1 / attackRate;
+            //    Debug.Log(nextAttackRate);
+            //}
+
         }
     }
 
@@ -127,20 +143,15 @@ public class DemonController : MonoBehaviour
 
     void Attack()
     {
-        if (Time.time >= nextAttackRate)
+        if (state == State.Right)
         {
-            if (state == State.Right)
-            {
-                anim.SetInteger("state", 4);
-                playerObject.GetComponent<PlayerHealth>().TakeDamage();
-            }
-            else if (state == State.Left)
-            {
-                anim.SetInteger("state", 3);
-                playerObject.GetComponent<PlayerHealth>().TakeDamage();
-            }
-            nextAttackRate = Time.time + 1 / attackRate;
-            Debug.Log(nextAttackRate);
+            anim.SetInteger("state", 4);
+            playerObject.GetComponent<PlayerHealth>().TakeDamage();
+        }
+        else if (state == State.Left)
+        {
+            anim.SetInteger("state", 3);
+            playerObject.GetComponent<PlayerHealth>().TakeDamage();
         }
     }
 

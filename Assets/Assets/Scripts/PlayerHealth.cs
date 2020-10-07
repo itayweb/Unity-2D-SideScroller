@@ -63,7 +63,6 @@ public class PlayerHealth : MonoBehaviour
         animator.SetTrigger("Hurt");
         if (playerCurrentHealth <= 0)
         {
-            Debug.Log(animator.GetBool("IsDead"));
             playerDie();
         }
     }
