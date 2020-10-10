@@ -45,13 +45,13 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider){
         if(collider.gameObject.tag == "EnemyWalkPointLeft"){
-            transform.Rotate(0f,180f,0f);
-            canvas.transform.Rotate(0f,180f,0f);
+            transform.localScale = new Vector3(-1, 1, 1);
+            canvas.transform.localScale = new Vector3(-0.01f, 0.01f, 0.01f);
             movingLeft = false;
         }
         if(collider.gameObject.tag == "EnemyWalkPointRight"){
-            transform.Rotate(0f,180f,0f);
-            canvas.transform.Rotate(0f,180f,0f);
+            transform.localScale = new Vector3(1, 1, 1);
+            canvas.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
             movingLeft = true;
         }
     }

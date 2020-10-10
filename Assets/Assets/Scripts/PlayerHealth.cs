@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public float coolDownTime;
+    private float nextHurtTime = 0;
+
     public int healthPoints = 10;
     public int deathDelay = 0;
     public int timeDelay = 10;
@@ -36,6 +39,7 @@ public class PlayerHealth : MonoBehaviour
             TakeDamage();
         }*/
         if(collision.gameObject.CompareTag("Obsicle")){
+            print("testing");
             playerDie();
         }
         /*if(collision.gameObject.CompareTag("HealthPoints")){
@@ -50,6 +54,10 @@ public class PlayerHealth : MonoBehaviour
         if (collider.gameObject.tag.Equals("HealthPoints")){
             HealthPoints();
         }
+        else if (collider.gameObject.tag == "Obsicle")
+        {
+            playerDie();
+        }
     }
 
     void HealthPoints(){
@@ -60,7 +68,11 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(){
         playerCurrentHealth -= enemyAttackDamage;
         healthBar.SetHealth((int)playerCurrentHealth);
-        animator.SetTrigger("Hurt");
+        if (Time.time > nextHurtTime)
+        {
+            animator.SetTrigger("Hurt");
+            nextHurtTime = Time.time + coolDownTime;
+        }
         if (playerCurrentHealth <= 0)
         {
             playerDie();
@@ -68,7 +80,7 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public void playerDie(){
-        animator.SetBool("IsDead",true);
+        animator.SetTrigger("Die");
         StartCoroutine (DeathTimer());
         IEnumerator DeathTimer(){
             yield return new WaitForSeconds(1);

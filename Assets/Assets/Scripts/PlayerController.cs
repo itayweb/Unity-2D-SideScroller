@@ -78,6 +78,11 @@ public class PlayerController : MonoBehaviour
             gameEndMenu.SetActive(true);
             Debug.Log("Working");
         }
+
+        else if (player.collider.tag == "EndPoint")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
         // Checking if the player is touching the coin and adding it to the collector:
         /*if (player.gameObject.tag == "Coin"){
             Destroy(player.gameObject); // Remove the the coin from the screen
@@ -88,13 +93,9 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider){
         if (collider.gameObject.tag.Equals("Coin")){
-            Debug.Log("Working");
             Destroy(collider.gameObject); // Remove the the coin from the screen
             coins += 1; // Adding 1 coin to the collector
             numPoints.text = coins.ToString();
-        }
-        if (collider.gameObject.tag.Equals("EndPoint")){
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
         }
     }
 

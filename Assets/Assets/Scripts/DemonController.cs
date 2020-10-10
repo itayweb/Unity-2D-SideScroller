@@ -26,6 +26,9 @@ public class DemonController : MonoBehaviour
     private float attackRate = 10f;
     private float nextAttackRate = 0f;
 
+    public float coolDownTime;
+    private float nextAttackTime = 0;
+
     public int maxHealth = 1500;
     private int currentHealth;
     public int distance = 6;
@@ -84,35 +87,62 @@ public class DemonController : MonoBehaviour
         {
             StopChasingPlayer();
         }
+        //if (distToPlayer < 1.5)
+        //{
+        //    rb.velocity = new Vector2(0, 0);
+        //    if (transform.position.x > target.position.x)
+        //    {
+        //        state = State.Left;
+        //        if (Physics2D.Raycast(transform.position, Vector2.left, 1))
+        //        {
+        //            Attack();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        state = State.Right;
+        //        if (Physics2D.Raycast(transform.position, Vector2.right, 1))
+        //        {
+        //            Attack();
+        //        }
+        //    }
+        //    //if (Time.time >= nextAttackRate)
+        //    //{
+        //    //    Attack();
+        //    //    nextAttackRate = Time.time + 1 / attackRate;
+        //    //    Debug.Log(nextAttackRate);
+        //    //}
+
+        //}
+    }
+
+    private void FixedUpdate()
+    {
+        distToPlayer = Vector2.Distance(transform.position, target.position);
+
         if (distToPlayer < 1.5)
         {
             rb.velocity = new Vector2(0, 0);
             if (transform.position.x > target.position.x)
             {
                 state = State.Left;
-                if (Time.time >= nextAttackRate && Physics2D.Raycast(transform.position, Vector2.left, 1))
+                if (Time.time > nextAttackRate && Physics2D.Raycast(transform.position, Vector2.left, 1))
                 {
-
+                    Attack();
+                    nextAttackRate = Time.time + coolDownTime;
                 }
             }
             else
             {
                 state = State.Right;
-                if (Time.time >= nextAttackRate && Physics2D.Raycast(transform.position, Vector2.right, 1))
+                if (Time.time > nextAttackRate && Physics2D.Raycast(transform.position, Vector2.right, 1))
                 {
-
+                    Attack();
+                    nextAttackRate = Time.time + coolDownTime;
                 }
             }
-            //if (Time.time >= nextAttackRate)
-            //{
-            //    Attack();
-            //    nextAttackRate = Time.time + 1 / attackRate;
-            //    Debug.Log(nextAttackRate);
-            //}
-
         }
     }
-
     void ChasingPlayer()
     {
         if (transform.position.x > target.position.x)
@@ -131,6 +161,7 @@ public class DemonController : MonoBehaviour
         }
         if (transform.position.x == target.position.x)
         {
+            Debug.Log("Testing");
             StopChasingPlayer();
         }
     }
