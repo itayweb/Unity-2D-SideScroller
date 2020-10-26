@@ -43,7 +43,7 @@ public class PlayerCombatDemon : MonoBehaviour
         Collider2D[] hitDemons = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemiesLayer);
         foreach (Collider2D demon in hitDemons)
         {
-            demon.GetComponent<DemonController>().TakeDamage(attackDamage);
+            demon.GetComponent<Demon>().TakeDamage(attackDamage);
         }
     }
 

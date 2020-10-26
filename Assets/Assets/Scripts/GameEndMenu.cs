@@ -5,13 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class GameEndMenu : MonoBehaviour
 {
+    [SerializeField] GameObject player;
+    private Rigidbody2D rb;
+
     private void Awake()
     {
+        StartCoroutine(DisableVelocity());
         StartCoroutine(Timer());
-        IEnumerator Timer()
-        {
-            yield return new WaitForSeconds(2);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
+    }
+
+    IEnumerator DisableVelocity()
+    {
+        yield return new WaitForSeconds(0.5f);
+        player.GetComponent<PlayerController>().enabled = false;
+    }
+
+    IEnumerator Timer()
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

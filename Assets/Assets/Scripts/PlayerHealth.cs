@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    private bool isHurting = false;
+
     public float coolDownTime;
     private float nextHurtTime = 0;
 
@@ -49,10 +51,11 @@ public class PlayerHealth : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider){
         if (collider.gameObject.tag.Equals("Enemy")){
-            TakeDamage();
+            TakeDamage(enemyAttackDamage);
         }
         if (collider.gameObject.tag.Equals("HealthPoints")){
-            HealthPoints();
+            if (playerCurrentHealth < playerMaxHealth)            
+                HealthPoints();
         }
         else if (collider.gameObject.tag == "Obsicle")
         {
@@ -62,30 +65,42 @@ public class PlayerHealth : MonoBehaviour
 
     void HealthPoints(){
         playerCurrentHealth += healthPoints;
+        healthBar.SetHealth((int)playerCurrentHealth);
         Destroy(GameObject.FindWithTag("HealthPoints"));
     }
 
-    public void TakeDamage(){
+    public void TakeDamage(float enemyAttackDamage){
         playerCurrentHealth -= enemyAttackDamage;
         healthBar.SetHealth((int)playerCurrentHealth);
-        if (Time.time > nextHurtTime)
+        if (isHurting == false)
         {
-            animator.SetTrigger("Hurt");
-            nextHurtTime = Time.time + coolDownTime;
+            StartCoroutine(PlayerTakeDamageAnimation());
         }
         if (playerCurrentHealth <= 0)
         {
+            animator.ResetTrigger("Attack");
+            isHurting = true;
             playerDie();
         }
     }
 
     public void playerDie(){
         animator.SetTrigger("Die");
-        StartCoroutine (DeathTimer());
-        IEnumerator DeathTimer(){
-            yield return new WaitForSeconds(1);
-            Time.timeScale = 0f;
-            gameOverScreen.SetActive(true);
-        }
+        StartCoroutine (DeathTimer());        
+    }
+
+    IEnumerator DeathTimer()
+    {
+        yield return new WaitForSeconds(1.4f);
+        Time.timeScale = 0f;
+        gameOverScreen.SetActive(true);
+    }
+
+    IEnumerator PlayerTakeDamageAnimation()
+    {
+        isHurting = true;
+        yield return new WaitForSeconds(1f);
+        animator.SetTrigger("Hurt");
+        isHurting = false;
     }
 }

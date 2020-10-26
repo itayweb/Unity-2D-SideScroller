@@ -46,6 +46,7 @@ public class DemonController : MonoBehaviour
     public float timerSeconds;
 
     public bool movingLeft;
+    public bool isFlipped;
 
     private Transform target;
 
@@ -143,6 +144,26 @@ public class DemonController : MonoBehaviour
             }
         }
     }
+
+    public void FlipDemon()
+    {
+        Vector3 flipped = transform.localScale;
+        flipped.z *= -1f;
+
+        if (transform.position.x > target.position.x && isFlipped)
+        {
+            transform.localScale = flipped;
+            transform.Rotate(0f, 180f, 0f);
+            isFlipped = false;
+        }
+        else if (transform.position.x < target.position.x && !isFlipped)
+        {
+            transform.localScale = flipped;
+            transform.Rotate(0f, 180f, 0f);
+            isFlipped = true;
+        }
+    }
+
     void ChasingPlayer()
     {
         if (transform.position.x > target.position.x)
@@ -177,12 +198,12 @@ public class DemonController : MonoBehaviour
         if (state == State.Right)
         {
             anim.SetInteger("state", 4);
-            playerObject.GetComponent<PlayerHealth>().TakeDamage();
+            playerObject.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
         }
         else if (state == State.Left)
         {
             anim.SetInteger("state", 3);
-            playerObject.GetComponent<PlayerHealth>().TakeDamage();
+            playerObject.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
         }
     }
 

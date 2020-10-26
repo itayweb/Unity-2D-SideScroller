@@ -76,7 +76,6 @@ public class PlayerController : MonoBehaviour
         else if (player.collider.tag == "Trophy")
         {
             gameEndMenu.SetActive(true);
-            Debug.Log("Working");
         }
 
         else if (player.collider.tag == "EndPoint")
